@@ -5,33 +5,29 @@ export default function TextForm(props) {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toUpperCase();
     setText(newText);
-
   };
 
   const handleCopyClick = () => {
     // console.log("Uppercase was clicked" + text);
     let text = document.getElementById("myBox");
     text.select();
-    navigator.clipboard.writeText(text.value);  
-    };
+    navigator.clipboard.writeText(text.value);
+  };
 
-    const handledownloadClick = () => { 
-        const element = document.createElement("a");
-        const file = new Blob([text], {type: 'text/plain'});
-        element.href = URL.createObjectURL(file);
-        element.download = "text.txt";
-        document.body.appendChild(element); // Required for this to work in FireFox
-        element.click();
-        }
+  const handledownloadClick = () => {
+    const element = document.createElement("a");
+    const file = new Blob([text], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = "text.txt";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
 
   const handleLoClick = () => {
     // console.log("Lowercase was clicked" + text);
     let newText = text.toLowerCase();
     setText(newText);
-
   };
-  
-
 
   const handleOnChange = (event) => {
     // console.log("On Change");
@@ -45,48 +41,55 @@ export default function TextForm(props) {
 
   return (
     <>
-    <div>
-      <h1>{props.heading}</h1>
-      <div className="mb-3">
-        <textarea
-          className="form-control"
-          value={text}
-          onChange={handleOnChange}
-          id="myBox"
-          rows="8"
-        ></textarea>
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
+        <div>
+          <h1>{props.heading}</h1>
+          <div className="mb-3">
+            <textarea
+              className="form-control"
+              value={text}
+              onChange={handleOnChange}
+              id="myBox"
+              rows="8"
+              style={{
+                backgroundColor: props.mode === "dark" ? "black" : "white",
+                color: props.mode === "dark" ? "white" : "black",
+              }}
+            ></textarea>
+          </div>
+
+          <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
+
+          <button className="btn btn-primary mx-2" onClick={handleLoClick}> Convert to LowerCase</button>
+           
+          <button className="btn btn-primary mx-2" onClick={handleCopyClick}>Copy text</button>
+
+          <button className="btn btn-primary mx-2" onClick={handledownloadClick}>Download text</button>
+        </div>
       </div>
 
-      <button className="btn btn-primary mx-2"  onClick={handleUpClick}>
-        Convert to UpperCase
-      </button>
-
-      <button className="btn btn-primary mx-2" onClick={handleLoClick}>
-        Convert to LowerCase
-      </button>
-
-      <button className="btn btn-primary mx-2" onClick={handleCopyClick}>
-        Copy text
-      </button>
-
-      <button className="btn btn-primary mx-2" onClick={handledownloadClick}>
-        Download text
-      </button>
-    </div>
-
-    <div> 
-
-        <div className="container">
-
-            <h1>your text summery</h1>
-            <p> {text.split(" ").length} words and {text.length} charcters</p>
-            <p> {0.008  * text.split(" ").length} minutes read</p>
-            <h2>Preview</h2>
-            <p>{text}</p>
+      <div>
+        <div
+          className="container"
+          style={{ color: props.mode === "dark" ? "white" : "black" }}
+        >
+          <h1>your text summery</h1>
+          <p>
+            {" "}
+            {text.split(" ").length} words and {text.length} charcters
+          </p>
+          <p> {0.008 * text.split(" ").length} minutes read</p>
+          <h2>Preview</h2>
+          <p>
+            {text.length > 0
+              ? text
+              : "Enter something in the textbox above to preview it here"}
+          </p>
         </div>
-    </div>
-
-
-</>
+      </div>
+    </>
   );
 }
