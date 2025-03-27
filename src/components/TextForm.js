@@ -61,13 +61,13 @@ export default function TextForm(props) {
             ></textarea>
           </div>
 
-          <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
+          <button disabled = {text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to UpperCase</button>
 
-          <button className="btn btn-primary mx-2" onClick={handleLoClick}> Convert to LowerCase</button>
+          <button disabled = {text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLoClick}> Convert to LowerCase</button>
            
-          <button className="btn btn-primary mx-2" onClick={handleCopyClick}>Copy text</button>
+          <button disabled = {text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>Copy text</button>
 
-          <button className="btn btn-primary mx-2" onClick={handledownloadClick}>Download text</button>
+          <button disabled = {text.length===0} className="btn btn-primary mx-2 my-2" onClick={handledownloadClick}>Download text</button>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export default function TextForm(props) {
           <h1>your text summery</h1>
           <p>
             {" "}
-            {text.split(" ").length} words and {text.length} charcters
+            {text.split(/\S+/).filter((element) => {return element.length!== 0}).length} words and {text.length} charcters
           </p>
           <p> {0.008 * text.split(" ").length} minutes read</p>
           <h2>Preview</h2>

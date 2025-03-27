@@ -19,17 +19,20 @@ function App() {
   };
   return (
     <>
-    <Router>
-      <Navbar title="Textutils" mode={mode} toggleMode={toggleMode} />
-      <div className="container my-3">
-        <Routes> 
-        <Route path="/about" element={<About />} /> 
-        <Route path="/" element={<TextForm heading="Enter the text to analyze" mode={mode}/>} />
-          
-          
-        </Routes>
+      <Router>
+        <Navbar title="Textutils" mode={mode} toggleMode={toggleMode} />
 
-      </div>
+        <div className="container my-3">
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/"
+              element={
+                <TextForm heading="Enter the text to analyze" mode={mode} />
+              }
+            />
+          </Routes>
+        </div>
       </Router>
     </>
   );
